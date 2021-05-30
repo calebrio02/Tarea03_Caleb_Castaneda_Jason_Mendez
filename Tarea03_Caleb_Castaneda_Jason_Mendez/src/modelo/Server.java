@@ -8,7 +8,7 @@ public class Server {
 		Producto p = new Producto();
 		String line; // Almacena lo recibido
 		String outline;
-		String precio;
+		String mensaje;
 		int total =0;
 		
 		
@@ -31,8 +31,12 @@ public class Server {
 					p.setNombre("Manzana");
 					p.setPrecio(500);
 					total += p.getPrecio();
-					outline = "Kilo de: "+p.getNombre()+" ¢"+p.getPrecio()+ " Total: ¢"+ total+"\n";
+					outline = "Kilo de: "+p.getNombre()+"\n";
+					mensaje = Integer.toString(p.getPrecio())+"\n";
 					outToClient.writeBytes(outline);
+					outToClient.writeBytes(mensaje);
+					outToClient.flush();
+					
 									
 				}
 				if(line.equalsIgnoreCase("Banano")) {
@@ -40,8 +44,9 @@ public class Server {
 					p.setNombre("Banano");
 					p.setPrecio(250);
 					total += p.getPrecio();
-					outline = "Kilo de: "+p.getNombre()+" ¢"+p.getPrecio()+ " Total: ¢"+ total+"\n";
+					outline = "Kilo de: "+p.getNombre()+" ¢"+p.getPrecio()+ "\n Total: ¢"+ total+"\n";
 					outToClient.writeBytes(outline);
+					
 					
 				}
 				if(line.equalsIgnoreCase("Uva")){

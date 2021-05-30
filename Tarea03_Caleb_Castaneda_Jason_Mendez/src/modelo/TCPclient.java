@@ -1,6 +1,7 @@
 package modelo;
 import java.io.*;
 import java.net.*;
+import java.util.stream.Stream;
 
 import javax.swing.JOptionPane;
 
@@ -10,7 +11,7 @@ public class TCPclient {
 		String line; //ALMACENA LO DIGITADO
 					//CONCATENACION DE OBJETOS ADAPTADORES PARA LA LECTURA
 					//SIMPLE DE TECLADO
-		String input;	
+		Stream<String> input;	
 			
 			
 				InetAddress ip;
@@ -45,9 +46,10 @@ public class TCPclient {
 				BufferedReader inFromServer =new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 				
 				line= inFromUser;
-				outToServer.writeBytes(line + '\n');
-				input = inFromServer.readLine();
-				JOptionPane.showMessageDialog(null, input);
+				outToServer.writeBytes(line);
+				input = inFromServer.lines();
+				System.out.println(input);
+				input.forEach(System.out::println);
 				
 				
 			}while(!line.equalsIgnoreCase("quit")); //CERRAMOS EL SOCKET Y CON ELLO TAMBIEN LA CONEXION.
