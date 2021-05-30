@@ -4,22 +4,13 @@ import java.net.*;
 public class Server {
 	
 	public static void main(String argv[]) throws Exception {
+		
+		Producto p = new Producto();
 		String line; // Almacena lo recibido
-		/*
-		int n=0;
+		String outline;
+		String precio;
+		int total =0;
 		
-		if(argv.length>0) {
-			try {
-                n = Integer.parseInt(argv[0]);
-            } catch (NumberFormatException e) {
-                System.err.println("Argument" + argv[0] + " must be an integer.");
-
-                // Program ends
-                System.exit(1);
-            }
-		}
-		
-		*/
 		
 		
 		ServerSocket welcomeSocket = new ServerSocket(6789); //welcomeSocket es el socker servidor que acepta la conexión
@@ -28,28 +19,61 @@ public class Server {
 			
 			Socket connectionSocket = welcomeSocket.accept(); // Esta concatenación de objetos adaptadores permite la lectura simple de datos desde el socket para ese cliente.
 			BufferedReader inFromClient = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream())); // Recibe datos y los envia a pantalla.
+			DataOutputStream outToClient =new DataOutputStream(connectionSocket.getOutputStream());
 			
 			
 			while (true){
 				
 				line = inFromClient.readLine();
 				
-				if(line.equalsIgnoreCase("hola")) {
-					System.out.println("Holis");
+				if(line.equalsIgnoreCase("Manzana")) {
+					p = new Producto();
+					p.setNombre("Manzana");
+					p.setPrecio(500);
+					total += p.getPrecio();
+					outline = "Kilo de: "+p.getNombre()+" ¢"+p.getPrecio()+ " Total: ¢"+ total+"\n";
+					outToClient.writeBytes(outline);
+									
 				}
-				
-				if(line.equalsIgnoreCase("todo bien")) {
-					System.out.println("mjmmmmm");
+				if(line.equalsIgnoreCase("Banano")) {
+					p = new Producto();
+					p.setNombre("Banano");
+					p.setPrecio(250);
+					total += p.getPrecio();
+					outline = "Kilo de: "+p.getNombre()+" ¢"+p.getPrecio()+ " Total: ¢"+ total+"\n";
+					outToClient.writeBytes(outline);
+					
 				}
-				
-				if(line.equalsIgnoreCase("ok")){
-						System.out.println("cHAO");	
+				if(line.equalsIgnoreCase("Uva")){
+					p = new Producto();
+					p.setNombre("Uva");
+					p.setPrecio(2200);
+					total += p.getPrecio();	
+					outline = "Kilo de: "+p.getNombre()+" ¢"+p.getPrecio()+ " Total: ¢"+ total+"\n";
+					outToClient.writeBytes(outline);
+					
+				}
+				if(line.equalsIgnoreCase("Chile dulce")){
+					p.setNombre("Chile dulce");
+					p.setPrecio(1000);
+					total += p.getPrecio();
+					outline = "Kilo de: "+p.getNombre()+" ¢"+p.getPrecio()+ " Total: ¢"+ total+"\n";
+					outToClient.writeBytes(outline);
 						
-						if(line.equalsIgnoreCase("quit")) {
-							connectionSocket.close();
-							welcomeSocket.close();
-						}
-			}
+				}
+				if(line.equalsIgnoreCase("Aguacate")){
+					p = new Producto();
+					p.setNombre("Aguacate");
+					p.setPrecio(2500);
+					total += p.getPrecio();
+					outline = "Kilo de: "+p.getNombre()+" ¢"+p.getPrecio()+ " Total: ¢"+ total+"\n";
+					outToClient.writeBytes(outline);
+						
+				}
+				if(line.equalsIgnoreCase("Carrito")) {
+					connectionSocket.close();
+					welcomeSocket.close();
+				}
 				
 			//	System.out.println(line);	
 				

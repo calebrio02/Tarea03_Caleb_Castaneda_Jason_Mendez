@@ -10,7 +10,7 @@ public class TCPclient {
 		String line; //ALMACENA LO DIGITADO
 					//CONCATENACION DE OBJETOS ADAPTADORES PARA LA LECTURA
 					//SIMPLE DE TECLADO
-			
+		String input;	
 			
 			
 				InetAddress ip;
@@ -42,9 +42,13 @@ public class TCPclient {
 				//BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));	//SOCKET EN EL CLIENTE PARA ENVIAR DATOS AL SERVIDOR	
 				
 				String inFromUser = JOptionPane.showInputDialog("mensaje");
+				BufferedReader inFromServer =new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 				
 				line= inFromUser;
 				outToServer.writeBytes(line + '\n');
+				input = inFromServer.readLine();
+				JOptionPane.showMessageDialog(null, input);
+				
 				
 			}while(!line.equalsIgnoreCase("quit")); //CERRAMOS EL SOCKET Y CON ELLO TAMBIEN LA CONEXION.
 			clientSocket.close();
