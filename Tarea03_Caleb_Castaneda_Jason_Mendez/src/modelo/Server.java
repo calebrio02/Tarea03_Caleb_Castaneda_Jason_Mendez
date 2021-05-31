@@ -77,9 +77,11 @@ public class Server {
 					outToClient.writeBytes(outline);
 						
 				}
+				
 				if(line.equalsIgnoreCase("Carrito")) {
 					String totalS;
-					totalS = "Total de la compra: "+total;
+					System.out.println(total);
+					totalS = "Total de la compra: "+String.valueOf(total)+ "\n";
 					outToClient.writeBytes(totalS);
 					//connectionSocket.close();
 					//welcomeSocket.close();

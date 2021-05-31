@@ -22,7 +22,7 @@ public class TCPclient {
 	   private static String total;
 	   
 	   
-	   public static void settotal(String total1) {
+	   public static void setTotal(String total1) {
 		   total = total1;
 		}
 
@@ -105,7 +105,7 @@ public class TCPclient {
 
 				//BufferedReader inFromUser = new BufferedReader(new InputStreamReader(null, dato));	//SOCKET EN EL CLIENTE PARA ENVIAR DATOS AL SERVIDOR	
 				
-				//String inFromUser = JOptionPane.showInputDialog("mensaje");
+				
 				BufferedReader inFromServer =new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 				
 				
@@ -116,10 +116,12 @@ public class TCPclient {
 				
 				input = inFromServer.readLine();
 				if (input.contains("total")) {
-					TCPclient.settotal(input);
+					TCPclient.setTotal(input);
+				}else {
+					
 				}
 				
-				//JOptionPane.showMessageDialog(null, input);
+				
 				
 				
 				
@@ -132,16 +134,25 @@ public class TCPclient {
 					
 					
 				}
+				
+				
 				TCPclient.setDato(null);
-				//JOptionPane.showMessageDialog(null, resumenLista);
 				TCPclient.setRespuesta(resumenLista);
+				
+				if (input.contains("total")) { //ARREGLAR ESAS ITERACIONES ERRONEAS.
+					lista.removeAll(lista);
+					TCPclient.setRespuesta(null);
+				}else {
+					
+				}
+				
+				
+				
+				//if(TCPclient.getDato().equalsIgnoreCase("carrito")) {
+				//	lista.removeAll(lista);
+				//}
 			}
 				
-				//System.out.println(resumenLista);
-				resumenLista= "";
-				
-				//System.out.println;
-				//Thread.interrupted();
 				
 				
 			}

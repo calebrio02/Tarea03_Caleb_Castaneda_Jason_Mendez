@@ -6,8 +6,12 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controlador.Lista;
+
 import java.awt.CardLayout;
 import java.awt.Color;
 import javax.swing.JButton;
@@ -18,12 +22,15 @@ import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
+import javax.swing.JToolBar;
+import java.awt.Font;
 
 public class Interfaz extends JFrame {
 
 	private JPanel contentPaneVerduleria;
 	private JButton btnYuccas;
 	 TCPclient c = new TCPclient();
+	 Lista l = new Lista();
 	 private JTextField tConsultaPrecio;
 	
 
@@ -47,6 +54,7 @@ public class Interfaz extends JFrame {
 	 * Create the frame.
 	 */
 	public Interfaz() {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 761, 532);
 		contentPaneVerduleria = new JPanel();
@@ -55,8 +63,8 @@ public class Interfaz extends JFrame {
 		contentPaneVerduleria.setLayout(null);
 		
 		JPanel panelSelectV = new JPanel();
+		panelSelectV.setBounds(0, 0, 389, 436);
 		panelSelectV.setBackground(Color.GRAY);
-		panelSelectV.setBounds(0, 0, 389, 486);
 		contentPaneVerduleria.add(panelSelectV);
 		panelSelectV.setLayout(null);
 		
@@ -181,8 +189,8 @@ public class Interfaz extends JFrame {
 		panelSelectV.add(btnPeppers_1);
 		
 		JPanel panelResponsesFromServer = new JPanel();
+		panelResponsesFromServer.setBounds(390, 0, 359, 436);
 		panelResponsesFromServer.setBackground(Color.DARK_GRAY);
-		panelResponsesFromServer.setBounds(390, 0, 359, 486);
 		contentPaneVerduleria.add(panelResponsesFromServer);
 		panelResponsesFromServer.setLayout(null);
 		
@@ -195,7 +203,7 @@ public class Interfaz extends JFrame {
 		spOrden.setViewportView(tOrden);
 		
 		JButton btnOrder = new JButton("");
-		btnOrder.setBounds(131, 379, 77, 68);
+		btnOrder.setBounds(130, 333, 77, 68);
 		panelResponsesFromServer.add(btnOrder);
 		btnOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -206,7 +214,18 @@ public class Interfaz extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				tOrden.setText(TCPclient.getRespuesta());
+				tOrden.setText(TCPclient.getRespuesta() + "\n" );
+				if (JOptionPane.showConfirmDialog(null, "Esta seguro que desea agregar la orden al carrito?", "Alerta",//SE PREGUNRTA SI DESEA SALIR REALMENTE POR SI SE APRETO EL BOTON POR ERROR
+				        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {	
+					//System.exit(0);//SI NO HAY DATOS DEL TODO EL PROGRAMA SOLO SE CIERRA SIN PREGUNTAR SI DESEA GUARDAR DATOS
+					
+					l.insertar(TCPclient.getRespuesta());
+					l.mensajeTemporizado("Agregado al carrito", 1200);
+					tOrden.setText("");
+				} else {
+					tOrden.setText("");
+					
+				}
 				
 			}
 		});
@@ -216,8 +235,20 @@ public class Interfaz extends JFrame {
 		btnOrder.setContentAreaFilled(false);
 		
 		tConsultaPrecio = new JTextField();
-		tConsultaPrecio.setBounds(21, 44, 273, 31);
+		tConsultaPrecio.setBounds(36, 45, 273, 31);
 		panelResponsesFromServer.add(tConsultaPrecio);
 		tConsultaPrecio.setColumns(10);
+		
+		JButton btnNewButton = new JButton("mostrar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				l.mostrar();
+				
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnNewButton.setBounds(0, 434, 227, 73);
+		contentPaneVerduleria.add(btnNewButton);
 	}
 }
