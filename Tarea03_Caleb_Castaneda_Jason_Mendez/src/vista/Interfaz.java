@@ -1,5 +1,7 @@
 package vista;
 
+import modelo.TCPclient;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -11,11 +13,17 @@ import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Cursor;
+import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Interfaz extends JFrame {
 
 	private JPanel contentPaneVerduleria;
 	private JButton btnYuccas;
+	 TCPclient c = new TCPclient();
+	
 
 	/**
 	 * Launch the application.
@@ -51,6 +59,15 @@ public class Interfaz extends JFrame {
 		panelSelectV.setLayout(null);
 		
 		JButton btnApples = new JButton("");
+		btnApples.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				TCPclient.setDato("manzana");
+				//System.out.println(TCPclient.getDato());
+			
+				
+			}
+		});
 		btnApples.setIcon(new ImageIcon(Interfaz.class.getResource("/vista/images/manzanax64.png")));
 		btnApples.setDefaultCapable(false);
 		btnApples.setContentAreaFilled(false);
@@ -68,6 +85,12 @@ public class Interfaz extends JFrame {
 		panelSelectV.add(btnYuccas);
 		
 		JButton btnBananas = new JButton("");
+		btnBananas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TCPclient.setDato("banano");
+				
+			}
+		});
 		btnBananas.setIcon(new ImageIcon(Interfaz.class.getResource("/vista/images/bananas.png")));
 		btnBananas.setToolTipText("Consultar precio de manzanas por kilo...");
 		btnBananas.setDefaultCapable(false);
@@ -76,6 +99,11 @@ public class Interfaz extends JFrame {
 		panelSelectV.add(btnBananas);
 		
 		JButton btnGrapes = new JButton("");
+		btnGrapes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TCPclient.setDato("uva");
+			}
+		});
 		btnGrapes.setIcon(new ImageIcon(Interfaz.class.getResource("/vista/images/grape.png")));
 		btnGrapes.setToolTipText("Consultar precio de manzanas por kilo...");
 		btnGrapes.setDefaultCapable(false);
@@ -130,18 +158,37 @@ public class Interfaz extends JFrame {
 		btnPeppers_1.setBounds(26, 363, 77, 68);
 		panelSelectV.add(btnPeppers_1);
 		
-		JButton btnOrder = new JButton("");
-		btnOrder.setIcon(new ImageIcon(Interfaz.class.getResource("/vista/images/grocery-cart.png")));
-		btnOrder.setToolTipText("Consultar precio de manzanas por kilo...");
-		btnOrder.setDefaultCapable(false);
-		btnOrder.setContentAreaFilled(false);
-		btnOrder.setBounds(143, 376, 77, 68);
-		panelSelectV.add(btnOrder);
-		
 		JPanel panelResponsesFromServer = new JPanel();
 		panelResponsesFromServer.setBackground(Color.DARK_GRAY);
 		panelResponsesFromServer.setBounds(390, 0, 359, 486);
 		contentPaneVerduleria.add(panelResponsesFromServer);
 		panelResponsesFromServer.setLayout(null);
+		
+		JTextArea tConsultaPrecio = new JTextArea();
+		tConsultaPrecio.setBounds(21, 32, 288, 34);
+		panelResponsesFromServer.add(tConsultaPrecio);
+		
+		JScrollPane spOrden = new JScrollPane();
+		spOrden.setBounds(21, 122, 288, 184);
+		panelResponsesFromServer.add(spOrden);
+		
+		JTextArea tOrden = new JTextArea();
+		
+		spOrden.setViewportView(tOrden);
+		
+		JButton btnOrder = new JButton("");
+		btnOrder.setBounds(131, 379, 77, 68);
+		panelResponsesFromServer.add(btnOrder);
+		btnOrder.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				tOrden.setText(TCPclient.getRespuesta());
+				
+			}
+		});
+		btnOrder.setIcon(new ImageIcon(Interfaz.class.getResource("/vista/images/grocery-cart.png")));
+		btnOrder.setToolTipText("Consultar precio de manzanas por kilo...");
+		btnOrder.setDefaultCapable(false);
+		btnOrder.setContentAreaFilled(false);
 	}
 }

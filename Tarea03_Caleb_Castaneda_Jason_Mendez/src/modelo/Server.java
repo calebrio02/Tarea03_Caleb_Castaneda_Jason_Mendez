@@ -22,21 +22,23 @@ public class Server {
 			DataOutputStream outToClient =new DataOutputStream(connectionSocket.getOutputStream());
 			
 			
+			
+			
 			while (true){
 				
 				line = inFromClient.readLine();
+				
+			
 				
 				if(line.equalsIgnoreCase("Manzana")) {
 					p = new Producto();
 					p.setNombre("Manzana");
 					p.setPrecio(500);
 					total += p.getPrecio();
-					outline = "Kilo de: "+p.getNombre()+"\n";
-					mensaje = Integer.toString(p.getPrecio())+"\n";
-					outToClient.writeBytes(outline);
-					outToClient.writeBytes(mensaje);
-					outToClient.flush();
-					
+					outline = "Kilo de: "+p.getNombre() + "|| Precio: "+ Integer.toString(p.getPrecio())+"\n";
+
+					outToClient.writeBytes(outline); //SE COPIA LA INFO DE FOMRA LINEAR. PARA QUE LO RECIBA EL READLINE();
+				
 									
 				}
 				if(line.equalsIgnoreCase("Banano")) {
@@ -44,7 +46,7 @@ public class Server {
 					p.setNombre("Banano");
 					p.setPrecio(250);
 					total += p.getPrecio();
-					outline = "Kilo de: "+p.getNombre()+" ¢"+p.getPrecio()+ "\n Total: ¢"+ total+"\n";
+					outline = "Kilo de: "+p.getNombre()+ "|| Precio: "+ Integer.toString(p.getPrecio())+"\n";
 					outToClient.writeBytes(outline);
 					
 					
@@ -54,7 +56,7 @@ public class Server {
 					p.setNombre("Uva");
 					p.setPrecio(2200);
 					total += p.getPrecio();	
-					outline = "Kilo de: "+p.getNombre()+" ¢"+p.getPrecio()+ " Total: ¢"+ total+"\n";
+					outline = "Kilo de: "+p.getNombre()+ "|| Precio: "+ Integer.toString(p.getPrecio())+"\n";
 					outToClient.writeBytes(outline);
 					
 				}
@@ -62,7 +64,7 @@ public class Server {
 					p.setNombre("Chile dulce");
 					p.setPrecio(1000);
 					total += p.getPrecio();
-					outline = "Kilo de: "+p.getNombre()+" ¢"+p.getPrecio()+ " Total: ¢"+ total+"\n";
+					outline = "Kilo de: "+p.getNombre()+ "|| Precio: "+ Integer.toString(p.getPrecio())+"\n";
 					outToClient.writeBytes(outline);
 						
 				}
@@ -71,7 +73,7 @@ public class Server {
 					p.setNombre("Aguacate");
 					p.setPrecio(2500);
 					total += p.getPrecio();
-					outline = "Kilo de: "+p.getNombre()+" ¢"+p.getPrecio()+ " Total: ¢"+ total+"\n";
+					outline = "Kilo de: "+p.getNombre()+ "|| Precio: "+ Integer.toString(p.getPrecio())+"\n";
 					outToClient.writeBytes(outline);
 						
 				}
