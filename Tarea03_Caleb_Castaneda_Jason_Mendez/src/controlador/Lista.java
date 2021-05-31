@@ -31,8 +31,8 @@ public class Lista {
 	LinkedList<String> ordenes = new LinkedList<String>();
 		
 public String mostrar(int i) {//recibe numero de poliza
-	//Se crea variable para retornar
-			
+	//Se crea variable para retornar ++
+			String cell= "";
 			String info= "";
 			
 			
