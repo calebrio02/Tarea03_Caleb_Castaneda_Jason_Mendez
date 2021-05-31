@@ -17,12 +17,14 @@ import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
 
 public class Interfaz extends JFrame {
 
 	private JPanel contentPaneVerduleria;
 	private JButton btnYuccas;
 	 TCPclient c = new TCPclient();
+	 private JTextField tConsultaPrecio;
 	
 
 	/**
@@ -61,8 +63,14 @@ public class Interfaz extends JFrame {
 		JButton btnApples = new JButton("");
 		btnApples.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				TCPclient.setDato("manzana");
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				tConsultaPrecio.setText(TCPclient.getnombreprecio());
 				//System.out.println(TCPclient.getDato());
 			
 				
@@ -88,6 +96,13 @@ public class Interfaz extends JFrame {
 		btnBananas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TCPclient.setDato("banano");
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				tConsultaPrecio.setText(TCPclient.getnombreprecio());
 				
 			}
 		});
@@ -102,6 +117,13 @@ public class Interfaz extends JFrame {
 		btnGrapes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TCPclient.setDato("uva");
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				tConsultaPrecio.setText(TCPclient.getnombreprecio());
 			}
 		});
 		btnGrapes.setIcon(new ImageIcon(Interfaz.class.getResource("/vista/images/grape.png")));
@@ -164,10 +186,6 @@ public class Interfaz extends JFrame {
 		contentPaneVerduleria.add(panelResponsesFromServer);
 		panelResponsesFromServer.setLayout(null);
 		
-		JTextArea tConsultaPrecio = new JTextArea();
-		tConsultaPrecio.setBounds(21, 32, 288, 34);
-		panelResponsesFromServer.add(tConsultaPrecio);
-		
 		JScrollPane spOrden = new JScrollPane();
 		spOrden.setBounds(21, 122, 288, 184);
 		panelResponsesFromServer.add(spOrden);
@@ -181,7 +199,13 @@ public class Interfaz extends JFrame {
 		panelResponsesFromServer.add(btnOrder);
 		btnOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				TCPclient.setDato("Carrito");
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				tOrden.setText(TCPclient.getRespuesta());
 				
 			}
@@ -190,5 +214,10 @@ public class Interfaz extends JFrame {
 		btnOrder.setToolTipText("Consultar precio de manzanas por kilo...");
 		btnOrder.setDefaultCapable(false);
 		btnOrder.setContentAreaFilled(false);
+		
+		tConsultaPrecio = new JTextField();
+		tConsultaPrecio.setBounds(21, 44, 273, 31);
+		panelResponsesFromServer.add(tConsultaPrecio);
+		tConsultaPrecio.setColumns(10);
 	}
 }

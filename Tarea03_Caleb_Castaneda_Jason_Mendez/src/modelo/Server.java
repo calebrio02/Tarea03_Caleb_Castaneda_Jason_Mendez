@@ -78,8 +78,11 @@ public class Server {
 						
 				}
 				if(line.equalsIgnoreCase("Carrito")) {
-					connectionSocket.close();
-					welcomeSocket.close();
+					String totalS;
+					totalS = "Total de la compra: "+total;
+					outToClient.writeBytes(totalS);
+					//connectionSocket.close();
+					//welcomeSocket.close();
 				}
 				
 			//	System.out.println(line);	

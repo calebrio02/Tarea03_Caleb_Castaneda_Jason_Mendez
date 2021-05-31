@@ -16,7 +16,26 @@ public class TCPclient {
 	   private static String dato;
 	   
 	   private static String respuesta;
-	
+	   
+	   private static String nombreprecio;
+	   
+	   private static String total;
+	   
+	   
+	   public static void settotal(String total1) {
+		   total = total1;
+		}
+
+		public static String gettotal() {
+			return total;
+		}
+	   public static void setnombreprecio(String nombreprecio1) {
+		   nombreprecio = nombreprecio1;
+		}
+
+		public static String getnombreprecio() {
+			return nombreprecio;
+		}
 	   public static void setRespuesta(String respuesta1) {
 			respuesta = respuesta1;
 		}
@@ -76,9 +95,10 @@ public class TCPclient {
 			
 		while(true){
 			
-			//TCPclient.getDato();
-				System.out.println();
+			
+			
 				
+			Thread.sleep(25);
 			
 			if(TCPclient.getDato()!=null) {
 				String inFromUser = TCPclient.getDato();
@@ -89,17 +109,22 @@ public class TCPclient {
 				BufferedReader inFromServer =new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 				
 				
-				//line= inFromUser;
+				
 				outToServer.writeBytes(TCPclient.getDato() +"\n");
 				
 			   
 				
 				input = inFromServer.readLine();
+				if (input.contains("total")) {
+					TCPclient.settotal(input);
+				}
 				
-				JOptionPane.showMessageDialog(null, input);
+				//JOptionPane.showMessageDialog(null, input);
+				
 				
 				
 				lista.add(input);
+				TCPclient.setnombreprecio(input);
 				
 				for (int i = 0; i < lista.size(); i++) {
 					
