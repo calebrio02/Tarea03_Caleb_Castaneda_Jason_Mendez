@@ -10,16 +10,29 @@ import java.util.Scanner;
 import java.util.stream.Stream;
 
 import javax.swing.JOptionPane;
+
+import vista.Interfaz;
+
 import java.util.LinkedList;
 public class TCPclient {
 	
 	   private static String dato;
 	   
-	   private static String respuesta;
+	   private static String respuesta ="";
 	   
 	   private static String nombreprecio;
 	   
 	   private static String total;
+	   
+	   private static int actualizarCarrito;
+	   
+	   public static void setActualizarCarrito(int n) {
+		   actualizarCarrito =n ;
+	   }
+	   
+	   public static int  getActualizarCarrito() {
+		   return actualizarCarrito;
+	   }
 	   
 	   
 	   public static void setTotal(String total1) {
@@ -44,15 +57,16 @@ public class TCPclient {
 			return respuesta;
 		}
 
-	public static void setDato(String dato1) {
-		dato = dato1;
-	}
+		public static void setDato(String dato1) {
+			dato = dato1;
+			}
 
-	public static String getDato() {
-		return dato;
-	}
+			public static String getDato() {
+				return dato;
+				}
 		
-	public static void main(String argv[]) throws Exception{
+		@SuppressWarnings("deprecation")
+		public static void main(String argv[]) throws Exception{
 		
 		
 		
@@ -64,6 +78,7 @@ public class TCPclient {
 					//SIMPLE DE TECLADO
 		String input;	
 		String resumenLista="";
+		
 			
 			
 				InetAddress ip;
@@ -95,13 +110,15 @@ public class TCPclient {
 			
 		while(true){
 			
-			
-			
-				
+		
 			Thread.sleep(25);
 			
 			if(TCPclient.getDato()!=null) {
+				
+				
+				
 				String inFromUser = TCPclient.getDato();
+				
 
 				//BufferedReader inFromUser = new BufferedReader(new InputStreamReader(null, dato));	//SOCKET EN EL CLIENTE PARA ENVIAR DATOS AL SERVIDOR	
 				
@@ -110,99 +127,127 @@ public class TCPclient {
 				
 				
 				
-				outToServer.writeBytes(TCPclient.getDato() +"\n");
 				
-			   
-				
-				input = inFromServer.readLine();
-				if (input.contains("total")) {
-					TCPclient.setTotal(input);
-				}else {
+			
+				if(lista.isEmpty()&&inFromUser.equalsIgnoreCase("saberTotal")) {
 					
-				}
-				
-				
-				
-				
-				
-				lista.add(input);
-				TCPclient.setnombreprecio(input);
-				
-				for (int i = 0; i < lista.size(); i++) {
-					
-					resumenLista += lista.get(i).toString()+ "\n";
-					
-					
-				}
-				
-				
 				TCPclient.setDato(null);
-				TCPclient.setRespuesta(resumenLista);
-				
-				if (input.contains("total")) { //ARREGLAR ESAS ITERACIONES ERRONEAS.
-					lista.removeAll(lista);
-					TCPclient.setRespuesta(null);
+				Thread.sleep(25);
+					
 				}else {
 					
+					
+				
+					
+				
+					
+					outToServer.writeBytes(TCPclient.getDato() +"\n");
+					
+					input = inFromServer.readLine();
+				
+					if(input.contains("end")) {
+						clientSocket.close();
+						Thread.currentThread().stop();
+						
+					}
+					
+					if(input.contains("nada")) {
+						TCPclient.setRespuesta("");
+						lista.clear();
+						System.out.println(lista.size());
+						
+					}else {
+						System.out.println(lista.size());
+					}
+					
+					
+					
+					
+				
+				if(input.length()>0&&!input.contains("total")&&!input.contains("nada")){
+				
+					lista.add(input);
+					
+					TCPclient.setnombreprecio(input);
+					
+					String recopilador= "";
+					
+					for (int i = 0; i < lista.size(); i++) {
+						
+						recopilador += lista.get(i).toString()+ "\n";//ACA ERROR
+						
+						
+					}
+					
+					resumenLista = recopilador;
+					
+					
+					TCPclient.setDato(null);
+					input = null;
+					
+			
+					
+					TCPclient.setRespuesta(resumenLista);
+					
+					
+					
+				}else 
+					if (input.contains("total")) {
+					
+						
+					TCPclient.setTotal(input);
+					//lista.add(input);
+					
+					resumenLista="";
+					String recopilador= "";
+					
+					
+					for (int i = 0; i < lista.size(); i++) {
+						
+						recopilador += lista.get(i).toString()+"\n";//ACA ERROR
+						
+						
+					}
+					
+					resumenLista = recopilador;
+					
+					
+					TCPclient.setDato(null);
+				
+					System.out.println(input);
+					
+					TCPclient.setRespuesta(resumenLista  + TCPclient.gettotal());
+					input=null;
+					resumenLista="";
+					
+					
+				
+					
+				}
+				else if(input.contains("nada")){
+					
+					TCPclient.setDato(null);
+					input=null;
 				}
 				
 				
 				
-				//if(TCPclient.getDato().equalsIgnoreCase("carrito")) {
-				//	lista.removeAll(lista);
-				//}
-			}
 				
 				
-				
-			}
-			
-			/*
-			do {
-				
-				//BufferedReader inFromUser = new BufferedReader(new InputStreamReader(null, dato));	//SOCKET EN EL CLIENTE PARA ENVIAR DATOS AL SERVIDOR	
-				
-				String inFromUser = JOptionPane.showInputDialog("mensaje");
-				BufferedReader inFromServer =new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-				
-				
-				
-				line= inFromUser;
-				outToServer.writeBytes(line +"\n");
-				
-			     
-			
-		
-				
-				input = inFromServer.readLine();
-				
-				JOptionPane.showMessageDialog(null, input);
-				
-				
-				
-				
-				
-				
-				
-				lista.add(input);
-				
-				for (int i = 0; i < lista.size(); i++) {
-					
-					resumenLista += lista.get(i).toString()+ "\n";
-					
-					
 				}
-				
-				System.out.println(resumenLista);
-				resumenLista= "";
+
 				
 				
-				
-			}while(!line.equalsIgnoreCase("quit")); //CERRAMOS EL SOCKET Y CON ELLO TAMBIEN LA CONEXION.
-			clientSocket.close();
+				}
 			
-			*/
+			
+			}
 		}
+		}
+
 			
 	
-}
+
+			
+	
+

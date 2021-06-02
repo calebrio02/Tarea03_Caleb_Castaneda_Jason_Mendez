@@ -24,8 +24,9 @@ public class Server {
 			
 			
 			
-			while (true){
+			do{
 				
+				Thread.sleep(25);
 				line = inFromClient.readLine();
 				
 			
@@ -35,7 +36,7 @@ public class Server {
 					p.setNombre("Manzana");
 					p.setPrecio(500);
 					total += p.getPrecio();
-					outline = "Kilo de: "+p.getNombre() + "|| Precio: "+ Integer.toString(p.getPrecio())+"\n";
+					outline = "Kg: "+p.getNombre() + "||Precio: "+ Integer.toString(p.getPrecio())+"\n";
 
 					outToClient.writeBytes(outline); //SE COPIA LA INFO DE FOMRA LINEAR. PARA QUE LO RECIBA EL READLINE();
 				
@@ -46,7 +47,7 @@ public class Server {
 					p.setNombre("Banano");
 					p.setPrecio(250);
 					total += p.getPrecio();
-					outline = "Kilo de: "+p.getNombre()+ "|| Precio: "+ Integer.toString(p.getPrecio())+"\n";
+					outline = "Kg: "+p.getNombre()+ "||Precio: "+ Integer.toString(p.getPrecio())+"\n";
 					outToClient.writeBytes(outline);
 					
 					
@@ -56,42 +57,97 @@ public class Server {
 					p.setNombre("Uva");
 					p.setPrecio(2200);
 					total += p.getPrecio();	
-					outline = "Kilo de: "+p.getNombre()+ "|| Precio: "+ Integer.toString(p.getPrecio())+"\n";
+					outline = "Kg: "+p.getNombre()+ "||Precio: "+ Integer.toString(p.getPrecio())+"\n";
 					outToClient.writeBytes(outline);
 					
 				}
 				if(line.equalsIgnoreCase("Chile dulce")){
 					p.setNombre("Chile dulce");
-					p.setPrecio(1000);
+					p.setPrecio(1600);
 					total += p.getPrecio();
-					outline = "Kilo de: "+p.getNombre()+ "|| Precio: "+ Integer.toString(p.getPrecio())+"\n";
+					outline = "Kg: "+p.getNombre()+ "||Precio: "+ Integer.toString(p.getPrecio())+"\n";
 					outToClient.writeBytes(outline);
 						
 				}
 				if(line.equalsIgnoreCase("Aguacate")){
 					p = new Producto();
 					p.setNombre("Aguacate");
-					p.setPrecio(2500);
+					p.setPrecio(4500);
 					total += p.getPrecio();
-					outline = "Kilo de: "+p.getNombre()+ "|| Precio: "+ Integer.toString(p.getPrecio())+"\n";
+					outline = "Kg: "+p.getNombre()+ "||Precio: "+ Integer.toString(p.getPrecio())+"\n";
 					outToClient.writeBytes(outline);
 						
 				}
 				
-				if(line.equalsIgnoreCase("Carrito")) {
-					String totalS;
-					System.out.println(total);
-					totalS = "Total de la compra: "+String.valueOf(total)+ "\n";
-					outToClient.writeBytes(totalS);
-					//connectionSocket.close();
-					//welcomeSocket.close();
+				if(line.equalsIgnoreCase("Tomate")){
+					p = new Producto();
+					p.setNombre("Aguacate");
+					p.setPrecio(950);
+					total += p.getPrecio();
+					outline = "Kg: "+p.getNombre()+ "||Precio: "+ Integer.toString(p.getPrecio())+"\n";
+					outToClient.writeBytes(outline);
+						
 				}
 				
-			//	System.out.println(line);	
 				
-			}//while(!line.equalsIgnoreCase("quit"));//CERRAMOS AMBOS SOCKETS
+				if(line.equalsIgnoreCase("Cebolla")){
+					p = new Producto();
+					p.setNombre("Cebolla");
+					p.setPrecio(1300);
+					total += p.getPrecio();
+					outline = "Kg: "+p.getNombre()+ "||Precio: "+ Integer.toString(p.getPrecio())+"\n";
+					outToClient.writeBytes(outline);
+						
+				}
+				
+				if(line.equalsIgnoreCase("Yuca")){
+					p = new Producto();
+					p.setNombre("Yuca");
+					p.setPrecio(600);
+					total += p.getPrecio();
+					outline = "Kg: "+p.getNombre()+ "||Precio: "+ Integer.toString(p.getPrecio())+"\n";
+					outToClient.writeBytes(outline);
+						
+				}
+				
+				if(line.equalsIgnoreCase("Papa")){
+					p = new Producto();
+					p.setNombre("Papa");
+					p.setPrecio(1200);
+					total += p.getPrecio();
+					outline = "Kg: "+p.getNombre()+ "||Precio: "+ Integer.toString(p.getPrecio())+"\n";
+					outToClient.writeBytes(outline);
+						
+				}
+				
+				
+				if(line.equalsIgnoreCase("saberTotal")) {
+					String totalS;
+					//System.out.println(total);
+					totalS = "total de la compra: "+String.valueOf(total)+ "\n";
+					outToClient.writeBytes(totalS);
+					
+				}
+				
+				if(line.equalsIgnoreCase("quit")) {
+					
+					outToClient.writeBytes("end");
+					//Thread.sleep(100);
+					connectionSocket.close();
+					welcomeSocket.close();
+					Thread.currentThread().stop();
+				}
+				
+				
+				if(line.equalsIgnoreCase("carrito")) {
+					total =0;
+					outToClient.writeBytes("nada" + "\n");
+				}
+				
+		
+				
+			}while(!line.equalsIgnoreCase("quit"));//CERRAMOS AMBOS SOCKETS
 			
-			//System.out.println("holis");
 			
 			
 	}

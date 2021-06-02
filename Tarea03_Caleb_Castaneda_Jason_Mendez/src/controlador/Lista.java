@@ -31,8 +31,8 @@ public class Lista {
 	LinkedList<String> ordenes = new LinkedList<String>();
 		
 public String mostrar(int i) {//recibe numero de poliza
-	//Se crea variable para retornar 
-	
+	//Se crea variable para retornar
+			
 			String info= "";
 			
 			
@@ -67,81 +67,30 @@ public String mostrar(int i) {//recibe numero de poliza
 			}
 			
 			
-			/*
-			public SolicitudSeguroSolidario consultar(String d) {//
-				SolicitudSeguroSolidario s = new SolicitudSeguroSolidario();
-					
-					try {
-						if(ordenes.isEmpty()) {///Si esta vacia se despliega el memnsaje
-							mensajeTemporizado("NO EXISTEN SOLICITUDES", 1500);
-						}else {
-						
-								for (int i = 0; i < ordenes.size(); i++) {
-									if(ordenes.get(i).getA().getNumPoliza().equalsIgnoreCase(d)) {
-									s = ordenes.get(i);
-									s.setIndiceSolicitud(i);
-								}
-							
-						}
-								}
-						}catch (Exception e) {
-							mensajeTemporizado("SOLICITUD NO EXISTE", 1500);
-
-						}
-					
-					
-					return s;
-			}
-			*/
-			
 			
 		
-				
 			
 			public void eliminarLista() {//SE ELIMINA DE FORMA TOTAL EL REGISTRO DE SOLICITUDES,
-											//**METODO EXCLUSIVO PARA EL AGENTE CORREDOR DE SEGUROS**
 				
-				ordenes.removeAll(ordenes);
-			}
-			
 				
-			
-			
-						
-			
-			/*
-			public void suprimir(String d) {	//SE UTILIZA LA MISMA DINAMICA QUE EN BUSCAR Y ACTUALIZAR
-											//EL PARAMETROS "d" REFERENTE A DATO, SE UTILIZARA PARA RECIBIR EL DATO DE INGRESADO EN GUI,
+				if(ordenes.isEmpty()) {
 					
-								//**METODO EXCLUSIVO PARA EL AGENTE CORREDOR DE SEGUROS**
-				try {
 					
-					if(ordenes.isEmpty()){///Si esta vacia se despliega el memnsaje
-						mensajeTemporizado("NO EXISTEN SOLICITUDES", 1500);
-					}else {
-						
-						for (int i = 0; i < ordenes.size(); i++) {
-							if(ordenes.get(i).getA().getNumPoliza().equalsIgnoreCase(d)) {
-								mensajeTemporizado("SOLICITUD [" +  (ordenes.get(i).getA().getNumPoliza()) + "] " + "eliminado", 1200);
-								ordenes.remove(ordenes.get(i));
-						}else {
+					mensajeTemporizado("TODAVIA NO HAY ORDENES PARA ELIMINAR", 2000);//si esta vacia se hace uso del metodo correspondiente y se devuelve este mensaje
+					
+					
+				}else {
+					
+					ordenes.removeAll(ordenes);
+					mensajeTemporizado("Registro Eliminado", 1400);
+			
+				}
 							
-						}
-					
-				
-						
-					
-					}
-						}
-					
-					}catch (Exception e) {
-						mensajeTemporizado("SOLICITUD NO EXISTE", 1500);
-					}
 				
 				
-			
 			}
-			*/
+			
+				
 			
 			
 			public String mostrar() {//EL ASEGURADO PODRA VER EL TOTAL DE SUS SOLICITUDES JUNTO AL DETALLE DE LAS MISMAS
@@ -152,7 +101,7 @@ public String mostrar(int i) {//recibe numero de poliza
 				if(ordenes.isEmpty()) {
 					
 					
-					mensajeTemporizado("NO EXISTEN SOLICITUDES", 1500);//si esta vacia se hace uso del metodo correspondiente y se devuelve este mensaje
+					mensajeTemporizado("TODAVIA NO HAY ORDENES PARA MOSTRAR", 2000);//si esta vacia se hace uso del metodo correspondiente y se devuelve este mensaje
 					
 					
 				}else {
@@ -163,7 +112,7 @@ public String mostrar(int i) {//recibe numero de poliza
 					
 					}
 					
-					JOptionPane.showMessageDialog(null, mensaje);
+					
 					
 					
 				}
