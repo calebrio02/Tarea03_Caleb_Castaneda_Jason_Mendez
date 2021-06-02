@@ -27,7 +27,7 @@ import modelo.TCPclient;
 
 public class Lista {
 
-	
+	//tamos de vuelta
 	LinkedList<String> ordenes = new LinkedList<String>();
 		
 public String mostrar(int i) {//recibe numero de poliza
