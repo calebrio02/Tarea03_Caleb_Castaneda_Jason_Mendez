@@ -354,6 +354,7 @@ public class Interfaz extends JFrame {
 		panelResponsesFromServer.add(spOrden);
 		
 		JTextArea tOrden = new JTextArea();
+		tOrden.setToolTipText("Para visualizar contenido presione el boton de \"calcular precio total \" para ver resumen de lista...");
 		tOrden.setForeground(new Color(255, 240, 245));
 		tOrden.setFont(new Font("Monospaced", Font.BOLD, 14));
 		tOrden.setBackground(new Color(119, 136, 153));
@@ -405,6 +406,7 @@ public class Interfaz extends JFrame {
 		btnOrder.setContentAreaFilled(false);
 		
 		tConsultaPrecio = new JTextField();
+		tConsultaPrecio.setToolTipText("mostrando informacion especifica de cada producto...");
 		tConsultaPrecio.setFont(new Font("Monospaced", Font.BOLD, 14));
 		tConsultaPrecio.setForeground(new Color(211, 211, 211));
 		tConsultaPrecio.setOpaque(false);

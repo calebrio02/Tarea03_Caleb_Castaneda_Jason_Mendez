@@ -16,6 +16,11 @@ import vista.Interfaz;
 import java.util.LinkedList;
 public class TCPclient {
 	
+	
+	//SE CREARON ESTAS VARIABLES PARA PODER ENVIAR PARAMETROS DESDE LA GUI AL CLIENT Y DE ESA MANERA CONTROLAR LAS PETICIONES RELACION CLIENT/SERVER
+	//EN RESUMEN ATRIBUTOS Y RESPECTIVOS METODOS SET() AND GET()
+	
+	
 	   private static String dato;
 	   
 	   private static String respuesta ="";
@@ -64,29 +69,28 @@ public class TCPclient {
 			public static String getDato() {
 				return dato;
 				}
+			
+			
 		
 		@SuppressWarnings("deprecation")
 		public static void main(String argv[]) throws Exception{
 		
-		
-		
+			
 		LinkedList <String> lista = new LinkedList<String>();
 		
 		
-		String line; //ALMACENA LO DIGITADO
-					//CONCATENACION DE OBJETOS ADAPTADORES PARA LA LECTURA
-					//SIMPLE DE TECLADO
-		String input;	
+				String input;	
 		String resumenLista="";
 		
 			
 			
 				InetAddress ip;
 				String hostname="";
+				
+				
 				try {
 					ip = InetAddress.getLocalHost();
 					hostname = ip.getHostName();
-				//	System.out.println("Your current IP address : " + ip);
 					System.out.println("Your current Hostname : " + hostname);
 	 
 				} catch (UnknownHostException e) {
@@ -117,11 +121,11 @@ public class TCPclient {
 				
 				
 				
-				String inFromUser = TCPclient.getDato();
+				String inFromUser = TCPclient.getDato(); //SOCKET EN EL CLIENTE PARA ENVIAR DATOS AL SERVIDOR	
+				
 				
 
-				//BufferedReader inFromUser = new BufferedReader(new InputStreamReader(null, dato));	//SOCKET EN EL CLIENTE PARA ENVIAR DATOS AL SERVIDOR	
-				
+			
 				
 				BufferedReader inFromServer =new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 				
@@ -134,13 +138,12 @@ public class TCPclient {
 				TCPclient.setDato(null);
 				Thread.sleep(25);
 					
+				
+				
+				
 				}else {
 					
-					
 				
-					
-				
-					
 					outToServer.writeBytes(TCPclient.getDato() +"\n");
 					
 					input = inFromServer.readLine();
@@ -163,6 +166,8 @@ public class TCPclient {
 					
 					
 					
+					
+					
 				
 				if(input.length()>0&&!input.contains("total")&&!input.contains("nada")){
 				
@@ -179,6 +184,8 @@ public class TCPclient {
 						
 					}
 					
+					
+					
 					resumenLista = recopilador;
 					
 					
@@ -191,8 +198,10 @@ public class TCPclient {
 					
 					
 					
-				}else 
-					if (input.contains("total")) {
+				}else if (input.contains("total")) {
+					
+					
+					
 					
 						
 					TCPclient.setTotal(input);
@@ -209,6 +218,8 @@ public class TCPclient {
 						
 					}
 					
+					
+					
 					resumenLista = recopilador;
 					
 					
@@ -224,26 +235,26 @@ public class TCPclient {
 				
 					
 				}
+				
+				
+				
 				else if(input.contains("nada")){
 					
 					TCPclient.setDato(null);
 					input=null;
-				}
+							}
+			
 				
-				
-				
-				
-				
-				}
+						}
 
 				
 				
+					}
+			
+			
 				}
-			
-			
 			}
-		}
-		}
+	}
 
 			
 	

@@ -26,36 +26,11 @@ import modelo.TCPclient;
 
 
 public class Lista {
-
-	//tamos de vuelta
-	LinkedList<String> ordenes = new LinkedList<String>();
-		
-public String mostrar(int i) {//recibe numero de poliza
-	//Se crea variable para retornar
-			
-			String info= "";
-			
-			
-			if (ordenes.isEmpty()==true) {
-				mensajeTemporizado("No hay solicitudes", 1000);
-			} else {
-
-				for (int j = 0; j < ordenes.size(); j++) {
-					
-					//info += solicitudes.get(j).mostrar() + "\n\n";
-				}
-			}
-			
-			
-			
-			return info;
-		}
-		
-		
+	
+	LinkedList<String> ordenes = new LinkedList<String>();	//NO SE REQUIERE GUARDAR UN TIPO DE DATO ESPECIAL,"OBJETO", ES POR ESA LA RAZON QUE GUARDAN CADENAS DE CARACTERRES/STRING PARA EFECTOS PRACITOS DE LA IDEA.		
+	
 		
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		
-
 			
 			int size=0;
 			
@@ -66,8 +41,7 @@ public String mostrar(int i) {//recibe numero de poliza
 				
 			}
 			
-			
-			
+		
 		
 			
 			public void eliminarLista() {//SE ELIMINA DE FORMA TOTAL EL REGISTRO DE SOLICITUDES,
@@ -105,7 +79,9 @@ public String mostrar(int i) {//recibe numero de poliza
 					
 					
 				}else {
-					//Datos para ver los datos de forma dinamica
+					
+					
+					//DATOS PARA QUE SEAN MOSTRADOS EN LA GUI
 				
 					for (int i = 0; i < ordenes.size(); i++) {
 					mensaje+=ordenes.get(i)+ "\n\n";

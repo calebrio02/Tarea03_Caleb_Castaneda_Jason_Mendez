@@ -22,14 +22,21 @@ public class Server {
 			DataOutputStream outToClient =new DataOutputStream(connectionSocket.getOutputStream());
 			
 			
-			
-			
 			do{
 				
 				Thread.sleep(25);
 				line = inFromClient.readLine();
 				
 			
+				
+				
+				//SE CREARON LAS SIGUIENTES CONDICIONES PARA PODER AGREGAR A LA LISTA EL FRUTO QUE CORRESPONDE EN RELACION A LO INGRESADO POR EL USUARIO.
+				//PD: ESTO DE LA CREACION DE LISTA EN SEGUNDO PLANO ES AJENA AL USER, DEPENDERÁ DE ÉL ADICIONAR AL CARRITO LO CONSULTADO SI ASI LO QUE QUISIERA.
+				
+				
+				
+				
+				
 				
 				if(line.equalsIgnoreCase("Manzana")) {
 					p = new Producto();
@@ -39,9 +46,11 @@ public class Server {
 					outline = "Kg: "+p.getNombre() + "||Precio: "+ Integer.toString(p.getPrecio())+"\n";
 
 					outToClient.writeBytes(outline); //SE COPIA LA INFO DE FOMRA LINEAR. PARA QUE LO RECIBA EL READLINE();
-				
-									
+		
 				}
+				
+		
+				
 				if(line.equalsIgnoreCase("Banano")) {
 					p = new Producto();
 					p.setNombre("Banano");
@@ -52,6 +61,9 @@ public class Server {
 					
 					
 				}
+				
+				
+				
 				if(line.equalsIgnoreCase("Uva")){
 					p = new Producto();
 					p.setNombre("Uva");
@@ -61,6 +73,9 @@ public class Server {
 					outToClient.writeBytes(outline);
 					
 				}
+				
+				
+				
 				if(line.equalsIgnoreCase("Chile dulce")){
 					p.setNombre("Chile dulce");
 					p.setPrecio(1600);
@@ -69,6 +84,9 @@ public class Server {
 					outToClient.writeBytes(outline);
 						
 				}
+				
+				
+				
 				if(line.equalsIgnoreCase("Aguacate")){
 					p = new Producto();
 					p.setNombre("Aguacate");
@@ -78,6 +96,8 @@ public class Server {
 					outToClient.writeBytes(outline);
 						
 				}
+				
+				
 				
 				if(line.equalsIgnoreCase("Tomate")){
 					p = new Producto();
@@ -100,6 +120,7 @@ public class Server {
 						
 				}
 				
+				
 				if(line.equalsIgnoreCase("Yuca")){
 					p = new Producto();
 					p.setNombre("Yuca");
@@ -109,6 +130,8 @@ public class Server {
 					outToClient.writeBytes(outline);
 						
 				}
+				
+				
 				
 				if(line.equalsIgnoreCase("Papa")){
 					p = new Producto();
@@ -128,6 +151,8 @@ public class Server {
 					outToClient.writeBytes(totalS);
 					
 				}
+				
+				
 				
 				if(line.equalsIgnoreCase("quit")) {
 					
