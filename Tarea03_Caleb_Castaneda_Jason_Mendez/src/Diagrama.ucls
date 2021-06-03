@@ -37,16 +37,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="modelo.TCPclient" project="Tarea03_Caleb_Castaneda_Jason_Mendez" 
-    file="/Tarea03_Caleb_Castaneda_Jason_Mendez/src/modelo/TCPclient.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="366" y="423"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="6" language="java" name="vista.Principal" project="Tarea03_Caleb_Castaneda_Jason_Mendez" 
+  <class id="5" language="java" name="vista.Principal" project="Tarea03_Caleb_Castaneda_Jason_Mendez" 
     file="/Tarea03_Caleb_Castaneda_Jason_Mendez/src/vista/Principal.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="608" y="59"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -55,18 +46,10 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="7">    
+  <association id="6">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="8" name="c"/>      
-      <multiplicity id="9" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="10">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="11" name="l"/>      
-      <multiplicity id="12" minimum="0" maximum="1"/>    
+      <attribute id="7" name="l"/>      
+      <multiplicity id="8" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
