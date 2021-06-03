@@ -1,4 +1,4 @@
-package modelo;
+package controlador;
 import java.io.*;
 
 import java.net.*;
@@ -30,6 +30,7 @@ public class TCPclient {
 	   private static String total;
 	   
 	   private static int actualizarCarrito;
+	   
 	   
 	   public static void setActualizarCarrito(int n) {
 		   actualizarCarrito =n ;

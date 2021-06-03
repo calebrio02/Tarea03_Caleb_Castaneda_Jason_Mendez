@@ -1,7 +1,5 @@
 package vista;
 
-import modelo.TCPclient;
-
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -11,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controlador.Lista;
+import controlador.TCPclient;
 
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -308,10 +307,19 @@ public class Interfaz extends JFrame {
 		btnMostrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				JOptionPane.showMessageDialog(null, l.mostrar(), "Factura", JOptionPane.INFORMATION_MESSAGE);
+				if(l.elementosLista()==false) {
+					l.mensajeTemporizado("TODAVIA NO HAY ORDENES PARA MOSTRAR", 2000);
+					
+				}else {
+					
+					JOptionPane.showMessageDialog(null, l.mostrar(), "Factura", JOptionPane.INFORMATION_MESSAGE);
+				}
 				
 			}
 		});
+		
+		
+		
 		btnMostrar.setFont(new Font("Constantia", Font.PLAIN, 18));
 		
 		JButton btnEliminar = new JButton("");

@@ -2,25 +2,12 @@ package vista;
 
 import java.awt.EventQueue;
 
+import controlador.TCPclient;
 import modelo.Server;
-import modelo.TCPclient;
 public class Principal {
 
 	public static void main(String[] args) {
 		
-        
-		/*
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Interfaz frame = new Interfaz();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		*/
 		Thread interfazThread = new Thread() {
 			public void run() {
 				try {

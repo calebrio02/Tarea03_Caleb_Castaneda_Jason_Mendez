@@ -18,8 +18,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import modelo.TCPclient;
-
 
 
 
@@ -69,14 +67,8 @@ public class Lista {
 			
 			public String mostrar() {//EL ASEGURADO PODRA VER EL TOTAL DE SUS SOLICITUDES JUNTO AL DETALLE DE LAS MISMAS
 				
-				
-				
 				String mensaje="";
 				if(ordenes.isEmpty()) {
-					
-					
-					mensajeTemporizado("TODAVIA NO HAY ORDENES PARA MOSTRAR", 2000);//si esta vacia se hace uso del metodo correspondiente y se devuelve este mensaje
-					
 					
 				}else {
 					
@@ -87,9 +79,7 @@ public class Lista {
 					mensaje+=ordenes.get(i)+ "\n\n";
 					
 					}
-					
-					
-					
+			
 					
 				}
 				return mensaje;
